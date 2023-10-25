@@ -1,0 +1,1 @@
+2022-09-21T15:00:52.041+0800	[31mERROR[0m	server/main.go:23	can't connnet to server redis
