@@ -22,6 +22,7 @@ func startHttpServer() {
 	http.HandleFunc("/v1/user/regist", registUserHandlers)                 // 注册用户，目前只支持匿名方式
 	http.HandleFunc("/v1/user/searchfriends", searchUserHandlers)          // 搜索用户
 	http.HandleFunc("/v1/user/addfriendreq", addfriendreqHandlers)         // 发送加好友请求，如果这里使用微博的关注模式，则不需要应答
+	http.HandleFunc("/v1/user/setfriendinfo", setfriendinfoHandlers)       // 设置好友是否显示以及删除好友等
 	http.HandleFunc("/v1/user/addfriendres", addfriendresHandlers)         // 应答好友请求，默认不需要应答，以后需要支持开启确认
 	http.HandleFunc("/v1/user/setbaseinfo", setbaseinfoHandlers)           // 设置个人基本信息
 	http.HandleFunc("/v1/user/setrealinfo", setrealinfoHandlers)           // 设置个人的认证信息，包括手机，邮箱等
@@ -175,6 +176,7 @@ func searchUserHandlers(w http.ResponseWriter, r *http.Request) {
 	}
 
 	userInfoJson, _ := user.UserInfoToString()
+	fmt.Println("search user:", userInfoJson)
 	temp := fmt.Sprintf(`{"state": "ok", "user":%s}`, userInfoJson)
 	w.Write([]byte(temp))
 
@@ -197,6 +199,7 @@ func addfriendreqHandlers(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Println("addfriendreqHandlers", values)
 	err := AddUserFollow(fid, uid)
 	if err != nil {
 		temp := fmt.Sprintf(`{"state": "fail", "code": %d, "deitail":“%s”}`, ErrInternalCode, err.Error())
@@ -206,6 +209,38 @@ func addfriendreqHandlers(w http.ResponseWriter, r *http.Request) {
 
 	temp := fmt.Sprintf(`{"state": "ok", "detail": "add friend ok"  }`)
 	w.Write([]byte(temp))
+}
+
+// 设置好友的基本信息，包括取消关注
+func setfriendinfoHandlers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application-json")
+
+	r.ParseForm()
+	values := r.URL.Query()
+	uid := values.Get("uid")
+	fid := values.Get("fid")
+	sid := values.Get("sid")
+	param := values.Get("param")
+	ok := CheckUserSession(sid, uid)
+	if !ok {
+
+		temp := fmt.Sprintf(`{"state": "fail", "code": %d, "detail":“%s”}`, ErrWrongSidCode, ErrWrongSid.Error())
+		w.Write([]byte(temp))
+		return
+	}
+
+	fmt.Println("setfriendinfoHandlers", values)
+	err := SetUserFollowSimple(fid, uid, param)
+	if err == nil {
+
+		temp := fmt.Sprintf(`{"state": "ok", "detail": "set friend info ok"  }`)
+		w.Write([]byte(temp))
+		return
+	}
+
+	temp := fmt.Sprintf(`{"state": "fail", "deitail":"update err:%s"}`, err.Error())
+	w.Write([]byte(temp))
+
 }
 
 // 设置应答结果
@@ -474,13 +509,8 @@ func gpxListHandlers(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, `{"state": "ok" }`)
 }
 
-// 查询某人最后位置
-func getLastPtHandlers(w http.ResponseWriter, r *http.Request) {
-	if !strings.EqualFold("Post", r.Method) {
-		w.WriteHeader(500)
-		fmt.Fprintln(w, "positon should use Post method")
-		return
-	}
+// 使用post提交的请求
+func getLastPtHandlersPost(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 	param := QueryParamPoint{}
@@ -509,10 +539,11 @@ func getLastPtHandlers(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// 查看是否在对方好友列表中
 	// 先在对方的粉丝中查询权限
 	ret := CheckUserPermission(param.Uid, param.Fid)
 	if !ret {
-		temp := fmt.Sprintf(`{"state": "fail", "deitail":“permission err”, "code": %d}`, ErrBadPermissionCode)
+		temp := fmt.Sprintf(`{"state": "fail", "deitail":"permission err", "code": %d}`, ErrBadPermissionCode)
 		fmt.Fprintln(w, temp)
 		return
 	}
@@ -543,6 +574,68 @@ func getLastPtHandlers(w http.ResponseWriter, r *http.Request) {
 	temp := fmt.Sprintf(`{"state": "ok", "pt": %s }`, gpxJson)
 	fmt.Fprintln(w, temp)
 	return
+}
+
+func getLastPtHandlersGet(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application-json")
+
+	r.ParseForm()
+	values := r.URL.Query()
+	uid := values.Get("uid")
+	sid := values.Get("sid")
+	fid := values.Get("fid")
+	// 先查一下登录情况
+	ok := CheckUserSession(sid, uid)
+	if !ok {
+		temp := fmt.Sprintf(`{"state": "fail", "code": %d, "detail":“%s”}`, ErrWrongSidCode, ErrWrongSid.Error())
+		w.Write([]byte(temp))
+		return
+	}
+
+	// 查看是否在对方好友列表中
+	// 先在对方的粉丝中查询权限
+	ret := CheckUserPermission(uid, fid)
+	if !ret {
+		temp := fmt.Sprintf(`{"state": "fail", "deitail":"permission err", "code": %d}`, ErrBadPermissionCode)
+		fmt.Fprintln(w, temp)
+		return
+	}
+
+	// 直接查询
+	gpx, err := redisCli.FindLastGpx(fid)
+	if gpx == nil {
+		w.WriteHeader(200)
+		//fmt.Fprintln(w, "param has err: %s", err.Error())
+		temp := fmt.Sprintf(`{"state": "fail", "deitail":“%s”, "code": %d}`, err.Error(), ErrNoDataCode)
+		fmt.Fprintln(w, temp)
+		return
+	}
+
+	gpxJson, err := gpx.ToJsonString()
+	if err != nil {
+		w.WriteHeader(200)
+		//fmt.Fprintln(w, "param has err: %s", err.Error())
+
+		temp := fmt.Sprintf(`{"state": "fail", "deitail":“%s”, "code": %d}`, err.Error(), ErrNoDataCode)
+		fmt.Fprintln(w, temp)
+		return
+	}
+
+	w.WriteHeader(200)
+	//data := `{"state": "ok", "pt":` + gpxJson + `}`
+	// fmt.Fprintln(w, data)
+	temp := fmt.Sprintf(`{"state": "ok", "pt": %s }`, gpxJson)
+	fmt.Fprintln(w, temp)
+	return
+}
+
+// 查询某人最后位置
+func getLastPtHandlers(w http.ResponseWriter, r *http.Request) {
+	if strings.EqualFold("Post", r.Method) {
+		getLastPtHandlersPost(w, r)
+	} else {
+		getLastPtHandlersGet(w, r)
+	}
 }
 
 // 查询某人一段时间轨迹

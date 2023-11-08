@@ -375,6 +375,16 @@ http://localhost:7817/v1/user/addfriendreq?uid=1005&sid=6812630841045951575&fid=
 ffff
 ```
 
+更改好友是否显示的属性以及删除好友
+
+```
+http://localhost:7817/v1/user/setfriendinfo?uid=1005&sid=6812630841045951575&param=show
+http://localhost:7817/v1/user/setfriendinfo?uid=1005&sid=6812630841045951575&param=ignore
+http://localhost:7817/v1/user/setfriendinfo?uid=1005&sid=6812630841045951575&param=remove
+```
+
+
+
 
 
 #### 2.1.6 好友确认

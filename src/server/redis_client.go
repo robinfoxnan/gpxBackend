@@ -223,6 +223,7 @@ func (cli *RedisClient) FindUserSession(sid string) (*UserSession, error) {
 }
 
 // 关注对方，同时将对方添加到自己关注列表，
+// todo: 将自己添加到对方的粉丝列表中
 func (cli *RedisClient) SetUserFollow(uid string, fid string, friend *FriendInfo) error {
 	data, err := json.Marshal(&friend)
 	if err != nil {
@@ -231,8 +232,53 @@ func (cli *RedisClient) SetUserFollow(uid string, fid string, friend *FriendInfo
 	}
 	str := string(data)
 	key := "uf" + uid
+	fmt.Println("设置用户的关注：", key, fid)
 	_, err = cli.Db.HSet(key, fid, str).Result()
 	return err
+}
+
+// 取消关注或者更显关注的信息
+// show, ignore, remove
+func (cli *RedisClient) setFollowUserInfo(uid string, fid string, param string) error {
+
+	friend := NewFriendInfo(fid)
+	tblName := "uf" + uid
+	strJson, err := cli.Db.HGet(tblName, fid).Result()
+
+	err = json.Unmarshal([]byte(strJson), friend)
+	if err != nil {
+		return err
+	}
+
+	if param == "ignore" {
+		friend.Visible = friend.Visible & (^PermissionFlagShow)
+		err = cli.SetUserFollow(uid, fid, friend)
+		return err
+
+	} else if param == "show" {
+		friend.Visible |= PermissionFlagShow
+		err = cli.SetUserFollow(uid, fid, friend)
+		return err
+
+	} else if param == "remove" {
+		key := "uf" + uid
+		_, err = cli.Db.HDel(key, fid).Result()
+		return err
+	}
+
+	return nil
+}
+
+// 检查A的关注列表中是否有B，如果有，则B可以查看A
+func (cli *RedisClient) AIsFollowingB(A string, B string) bool {
+
+	tblName := "uf" + A
+	_, err := cli.Db.HGet(tblName, B).Result()
+	if err == nil {
+		return true
+	}
+
+	return false
 }
 
 // 查询关注好友的相关信息

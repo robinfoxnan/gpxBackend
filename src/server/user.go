@@ -15,6 +15,7 @@ const (
 	PermissionFlagArticle = 1 << iota // a
 	PermissionFlagGps                 // p
 	PermissionFlagTrack               // t
+	PermissionFlagShow                // mark show
 )
 
 const PermissionAll = PermissionFlagArticle | PermissionFlagGps | PermissionFlagTrack
@@ -397,6 +398,7 @@ func RegistUser(rtype string, name string, pwd string, ip string) (*UserInfo, er
 	user.Pwd = pwd
 	user.TempPwd = ""
 	user.Ipv4 = ip
+	user.Icon = fmt.Sprintf("sys:%d", id%35+1)
 	user.Region = "未设定"
 
 	user.Tm = GetNowTimeString()
@@ -517,14 +519,14 @@ func SetUserBaseInfo(info *UserInfo) error {
 func AddUserFollow(fid string, uid string) error {
 
 	// 检查用户，并添加到自己的关注列表
-	user, err := SearchUser(fid, uid)
+	user, err := SearchUser(uid, fid)
 	if err != nil {
 		return fmt.Errorf("can't find friend by id %", fid)
 	}
 
 	friend := NewFriendInfo(fid)
 	friend.Icon = user.Icon
-	friend.Alias = user.Nick
+	friend.Alias = fmt.Sprintf("%s (%s)", user.Name, user.Nick)
 	err = redisCli.SetUserFollow(uid, fid, friend)
 
 	err = redisCli.CreateUserFun(uid, fid)
@@ -537,6 +539,12 @@ func SetUserFollowInfo(fid string, uid string, info *FriendInfo) error {
 	oldFriendInfo, err := redisCli.GetUserFollow(uid, fid)
 	oldFriendInfo.UpdateFrindInfo(info)
 	err = redisCli.SetUserFollow(uid, fid, oldFriendInfo)
+	return err
+}
+
+// 删除关注，或者设置是否显示
+func SetUserFollowSimple(fid string, uid string, param string) error {
+	err := redisCli.setFollowUserInfo(uid, fid, param)
 	return err
 }
 
@@ -583,8 +591,13 @@ func CheckUserPermission(uid string, fid string) bool {
 		return true
 	}
 
-	mask := int64(PermissionFlagGps)
+	// 如果对方关注你了，则你可以查看对方位置
+	ret := redisCli.AIsFollowingB(fid, uid)
+	if ret {
+		return true
+	}
 
+	mask := int64(PermissionFlagGps)
 	// 这里应该将fid作为用户，检查用户在粉丝中的权限
 	return redisCli.CheckUserFunPermission(fid, uid, mask)
 }
