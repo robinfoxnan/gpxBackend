@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/go-redis/redis"
 	json "github.com/json-iterator/go"
+	"log"
 	"math"
 	"net"
 	"sort"
@@ -692,10 +693,84 @@ func (cli *RedisClient) FindGpxTrack(param *QueryParamTrack) (array *GpxDataArra
 
 }
 
+// 如果已经存在，则会自动更新
+func (cli *RedisClient) AddGEOMember(name string, lat float64, lon float64) bool {
+	// 添加人员的地理位置信息
+	cmd := cli.Db.GeoAdd("people_locations", &redis.GeoLocation{
+		Name:      name,
+		Latitude:  lat,
+		Longitude: lon,
+	})
+
+	// 检查命令是否执行成功
+	if cmd.Err() != nil {
+		log.Fatal(cmd.Err())
+		return false
+	}
+	fmt.Printf("成功添加或更新的成员数量：%d\n", cmd.Val())
+	return true
+}
+
+// 查找某个人，一般就是返回0或者1个元素
+func (cli *RedisClient) GetPos(name string) *redis.GeoPos {
+	geoPosCmd := cli.Db.GeoPos("people_locations", name)
+
+	// 检查命令是否执行成功
+	if geoPosCmd.Err() != nil {
+		log.Fatal(geoPosCmd.Err())
+	}
+
+	// 获取地理坐标
+	coordinates := geoPosCmd.Val()
+	if len(coordinates) > 0 {
+		return coordinates[0]
+	}
+
+	return nil
+}
+
+// 计算两个人之间的距离
+func (cli *RedisClient) CalDistanceOf(name1 string, name2 string) float64 {
+	distanceBetweenPerson1AndPerson2, err := cli.Db.GeoDist("people_locations", name1, name2, "m").Result()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("Person1 和 Person2 之间的距离: %f 米\n", distanceBetweenPerson1AndPerson2)
+	return distanceBetweenPerson1AndPerson2
+}
+
+// 查找周围一定范围内的所有人
+func (cli *RedisClient) FindAllByName(name string, radius float64) ([]redis.GeoLocation, error) {
+	people, err := cli.Db.GeoRadiusByMember("people_locations", name, &redis.GeoRadiusQuery{
+		Radius: radius,
+		Unit:   "m",
+	}).Result()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("Person1 附近的人: %v\n", people)
+	return people, err
+}
+
+func (cli *RedisClient) FindAllByPoint(lat float64, lon float64, radius float64) ([]redis.GeoLocation, error) {
+	people, err := cli.Db.GeoRadius("people_locations",
+		lon, lat, &redis.GeoRadiusQuery{
+			Radius: radius,
+			Unit:   "m",
+		}).Result()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("Person1 附近的人: %v\n", people)
+	return people, err
+}
+
 // /////////////////////////////////////////////////////////////
 // for test it only
 func (cli *RedisClient) TestAddData() {
-	data := GpxData{"13810501031", 40.1, 116.12, 12, 0, 0}
+	data := GpxData{"13810501031", 40.1, 116.12, 12, 0, 0, "",
+		1.0, "network", 1.0, "nbeijing",
+		"add", "asd", ""}
 	data.Tm = time.Now().Unix()
 	n, lstTm, err := cli.AddGpx(&data)
 

@@ -52,11 +52,23 @@ func startHttpServer() {
 
 	//log.Printf("Listening on port %s", port)
 	//log.Printf("Open http://localhost:%s in the browser", port)
-	fmt.Printf("Open http://localhost:%d in the browser", port)
+	//fmt.Printf("Open http://localhost:%d in the browser", port)
 	addr := fmt.Sprintf("%s:%d", config.Server.Host, port)
-	err := http.ListenAndServe(addr, nil)
-	if err != nil {
-		fmt.Println(err.Error())
+
+	fmt.Println(config.Server.Schema)
+	if config.Server.Schema == "http" {
+		fmt.Printf("Open http://localhost:%d in the browser", port)
+		err := http.ListenAndServe(addr, nil)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+
+	} else {
+		fmt.Printf("Open https://localhost:%d in the browser", port)
+		err := http.ListenAndServeTLS(addr, config.Server.CertFile, config.Server.KeyFile, nil)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
 	}
 
 }
@@ -421,7 +433,8 @@ func gpxHandlers(w http.ResponseWriter, r *http.Request) {
 			gpx, err = GpxDataFromJson(string(body))
 			if err != nil {
 				//w.WriteHeader(500)
-				fmt.Fprintln(w, `"state": "fail", "detail": "parse json meet error: %s"`, err.Error())
+				fmt.Fprintln(w, `{"state": "fail", "detail": "parse json meet error"}`)
+				logger.Error("upload gpx point err= " + err.Error())
 				return
 			}
 		}
@@ -534,7 +547,7 @@ func getLastPtHandlersPost(w http.ResponseWriter, r *http.Request) {
 	// 先查用户
 	ok := CheckUserSession(param.Sid, param.Uid)
 	if !ok {
-		temp := fmt.Sprintf(`{"state": "fail", "code": %d, "detail":“%s”}`, ErrWrongSidCode, ErrWrongSid.Error())
+		temp := fmt.Sprintf(`{"state": "fail", "code": %d, "deitail":"%s"}`, ErrWrongSidCode, ErrWrongSid.Error())
 		fmt.Fprintln(w, temp)
 		return
 	}
@@ -553,7 +566,7 @@ func getLastPtHandlersPost(w http.ResponseWriter, r *http.Request) {
 	if gpx == nil {
 		w.WriteHeader(200)
 		//fmt.Fprintln(w, "param has err: %s", err.Error())
-		temp := fmt.Sprintf(`{"state": "fail", "deitail":“%s”, "code": %d}`, err.Error(), ErrNoDataCode)
+		temp := fmt.Sprintf(`{"state": "fail", "deitail":"%s", "code": %d}`, err.Error(), ErrNoDataCode)
 		fmt.Fprintln(w, temp)
 		return
 	}
@@ -563,7 +576,7 @@ func getLastPtHandlersPost(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(200)
 		//fmt.Fprintln(w, "param has err: %s", err.Error())
 
-		temp := fmt.Sprintf(`{"state": "fail", "deitail":“%s”, "code": %d}`, err.Error(), ErrNoDataCode)
+		temp := fmt.Sprintf(`{"state": "fail", "deitail":"%s", "code": %d}`, err.Error(), ErrNoDataCode)
 		fmt.Fprintln(w, temp)
 		return
 	}
@@ -587,7 +600,7 @@ func getLastPtHandlersGet(w http.ResponseWriter, r *http.Request) {
 	// 先查一下登录情况
 	ok := CheckUserSession(sid, uid)
 	if !ok {
-		temp := fmt.Sprintf(`{"state": "fail", "code": %d, "detail":“%s”}`, ErrWrongSidCode, ErrWrongSid.Error())
+		temp := fmt.Sprintf(`{"state": "fail", "code": %d, "deitail":"%s"}`, ErrWrongSidCode, ErrWrongSid.Error())
 		w.Write([]byte(temp))
 		return
 	}
@@ -606,7 +619,7 @@ func getLastPtHandlersGet(w http.ResponseWriter, r *http.Request) {
 	if gpx == nil {
 		w.WriteHeader(200)
 		//fmt.Fprintln(w, "param has err: %s", err.Error())
-		temp := fmt.Sprintf(`{"state": "fail", "deitail":“%s”, "code": %d}`, err.Error(), ErrNoDataCode)
+		temp := fmt.Sprintf(`{"state": "fail", "deitail":"%s", "code": %d}`, err.Error(), ErrNoDataCode)
 		fmt.Fprintln(w, temp)
 		return
 	}
@@ -616,7 +629,7 @@ func getLastPtHandlersGet(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(200)
 		//fmt.Fprintln(w, "param has err: %s", err.Error())
 
-		temp := fmt.Sprintf(`{"state": "fail", "deitail":“%s”, "code": %d}`, err.Error(), ErrNoDataCode)
+		temp := fmt.Sprintf(`{"state": "fail", "deitail":"%s", "code": %d}`, err.Error(), ErrNoDataCode)
 		fmt.Fprintln(w, temp)
 		return
 	}

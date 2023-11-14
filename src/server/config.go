@@ -15,10 +15,13 @@ type RedisConf struct {
 }
 
 type ServerConf struct {
-	Host    string `yaml:"host"`
-	Port    int    `yaml:"port"`
-	QueLen  int    `yaml:"queue_len"`
-	Workers int    `yaml:"workers"`
+	Host     string `yaml:"host"`
+	Port     int    `yaml:"port"`
+	QueLen   int    `yaml:"queue_len"`
+	Workers  int    `yaml:"workers"`
+	Schema   string `yaml:"schema"`
+	CertFile string `yaml:"cert"`
+	KeyFile  string `yaml:"key"`
 }
 
 type Config struct {

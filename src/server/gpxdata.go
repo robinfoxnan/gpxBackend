@@ -8,6 +8,7 @@ import (
 
 // 这个文件主要是用于定义各种传输的数据结构，使用json编码
 // 数据点
+
 type GpxData struct {
 	Uid   string  `json:"uid" `
 	Lat   float64 `json:"lat" `
@@ -15,6 +16,15 @@ type GpxData struct {
 	Ele   float64 `json:"ele" `
 	Speed float64 `json:"speed" `
 	Tm    int64   `json:"tm" ` // second time stamp
+	TmStr string  `json:"tmStr"`
+
+	Accuracy  float64 `json:"accuracy"`
+	Src       string  `json:"src"`
+	Direction float64 `json:"direction"`
+	City      string  `json:"city"`
+	Addr      string  `json:"addr"`
+	Street    string  `json:"street"`
+	StreetNo  string  `json:"streetNo"`
 	//	Rest  int8    `json: "rest" `  // 1：处于静止中， 0，未设置
 }
 
