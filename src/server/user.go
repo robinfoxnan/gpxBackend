@@ -471,10 +471,15 @@ func SearchUser(uid string, fid string) (*UserInfo, error) {
 		user.Pwd = ""
 		user.TempPwd = ""
 
-		// 这里需要判断权限，是否需要屏蔽其他的信息
-		user.Email = ""
-		user.Phone = ""
+		tempId := strconv.FormatInt(user.Id, 10)
+
+		if tempId != uid {
+			// 这里需要判断权限，是否需要屏蔽其他的信息
+			user.Email = ""
+			user.Phone = ""
+		}
 	}
+
 	return user, err
 }
 
@@ -492,9 +497,9 @@ func SetUserBaseInfo(info *UserInfo) error {
 	if len(info.Icon) > 0 {
 		user.Icon = info.Icon
 	}
-	if len(info.Name) > 0 {
-		user.Name = info.Name
-	}
+	//if len(info.Name) > 0 {
+	//	user.Name = info.Name
+	//}
 	if len(info.Nick) > 0 {
 		user.Nick = info.Nick
 	}
@@ -508,6 +513,16 @@ func SetUserBaseInfo(info *UserInfo) error {
 	if len(info.Pwd) > 0 {
 		user.Pwd = info.Pwd
 	}
+
+	if len(info.Phone) > 0 {
+		user.Phone = info.Phone
+	}
+
+	if len(info.Email) > 0 {
+		user.Email = info.Email
+	}
+
+	fmt.Println(info)
 
 	err = redisCli.SetUserInfo(user)
 	return err

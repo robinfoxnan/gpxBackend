@@ -8,7 +8,22 @@ import (
 
 // 这个文件主要是用于定义各种传输的数据结构，使用json编码
 // 数据点
-
+// {
+// "uid":"1008",
+// "lat":40.00651,
+// "lon":116.258824,
+// "ele":0,
+// "accuracy":20,
+// "src":"wifi",
+// "direction":34.578010847945244,
+// "city":"北京市",
+// "addr":"北京市海淀区香山路",
+// "street":"香山路",
+// "streetNo":"",
+// "speed":0,
+// "tm":1699950389,
+// "tmStr":"23-11-318-04-26-29"
+// }
 type GpxData struct {
 	Uid   string  `json:"uid" `
 	Lat   float64 `json:"lat" `
@@ -31,7 +46,7 @@ type GpxData struct {
 // 重新定义一个类型，用于排序
 type GpxDataList []GpxData
 
-// 下面的三个函数必须实现（获取长度函数，交换函数，比较函数（这里比较的是年龄））
+// 下面的三个函数必须实现（获取长度函数，交换函数，比较函数（这里比较的是时间戳））
 func (list GpxDataList) Len() int {
 	return len(list)
 }

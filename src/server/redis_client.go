@@ -116,6 +116,18 @@ func printRedisOption(opt *redis.Options) {
 
 }
 
+func (cli *RedisClient) InitData() {
+	if cli == nil {
+		return
+	}
+
+	idCmd := cli.Db.Get("users_id")
+	_, err := idCmd.Result()
+	if err != nil {
+		cli.Db.Set("users_id", 1000, 0)
+	}
+}
+
 // 使用普通的key保存一个值，每次都增加一个值，用于计算新增用户的ID
 func (cli *RedisClient) getNextUserId() (id int64) {
 	if cli == nil {

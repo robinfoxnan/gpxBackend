@@ -1,5 +1,5 @@
 redis:
-    redis_host: localhost:6379
+    redis_host: 8.140.203.92:6379
     redis_pwd: 123456
 server:
     host: 0.0.0.0

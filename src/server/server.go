@@ -280,21 +280,21 @@ func setbaseinfoHandlers(w http.ResponseWriter, r *http.Request) {
 				sid := strconv.FormatInt(user.Session, 10)
 				ok := CheckUserSession(sid, uid)
 				if !ok {
-					temp := fmt.Sprintf(`{"state": "fail", "code": %d, "detail":“%s”}`, ErrWrongSidCode, ErrWrongSid.Error())
+					temp := fmt.Sprintf(`{"state": "fail", "code": %d, "detail":"%s"}`, ErrWrongSidCode, ErrWrongSid.Error())
 					w.Write([]byte(temp))
 					return
 				}
 
 				err = SetUserBaseInfo(user)
 				if err == nil {
-					temp := fmt.Sprintf(`{"state": "ok", "deitail":"user json updated"}`)
+					temp := fmt.Sprintf(`{"state": "ok", "detail":"user json updated"}`)
 					w.Write([]byte(temp))
 				} else {
-					temp := fmt.Sprintf(`{"state": "fail", "deitail":"update err:%s"}`, err.Error())
+					temp := fmt.Sprintf(`{"state": "fail", "detail":"update err:%s"}`, err.Error())
 					w.Write([]byte(temp))
 				}
 			} else {
-				temp := fmt.Sprintf(`{"state": "fail", "deitail":"user json err:%s"}`, err.Error())
+				temp := fmt.Sprintf(`{"state": "fail", "detail":"user json err:%s"}`, err.Error())
 				w.Write([]byte(temp))
 			}
 

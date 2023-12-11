@@ -33,6 +33,9 @@ func main() {
 		return
 	}
 
+	// 创建初始数据
+	redisCli.InitData()
+
 	// 启动存储数据的worker
 	// 这里使用的是server文件中的全局变量
 	chGpxData, chanList = StartStoreWorker(redisCli)

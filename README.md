@@ -15,3 +15,14 @@ go build
 ./server.exe
 ```
 
+
+
+linux下
+
+```
+screen -S gpx
+chmod 777 ./server
+./server
+ctrl a + d
+```
+
