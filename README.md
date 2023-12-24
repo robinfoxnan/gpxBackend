@@ -3,7 +3,9 @@
 
 开发环境为windows11。
 
-数据使用redis存储。
+使用redis存储用户和地理信息数据。
+
+使用了mongoDB存储社区相关的帖子与评论等内容；如果不使用这部分功能，可以不架设；
 
 配置文件为：config.yaml
 
@@ -17,7 +19,7 @@ go build
 
 
 
-linux下
+linux下运行：
 
 ```
 screen -S gpx
@@ -26,3 +28,4 @@ chmod 777 ./server
 ctrl a + d
 ```
 
+debug目录是所需要的文件。
