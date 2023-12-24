@@ -1,5 +1,306 @@
-2022-09-21T15:53:13.057+0800	[34mINFO[0m	server/server.go:29	server start:	{"port": 7817}
-2022-09-21T15:55:35.994+0800	[34mINFO[0m	server/server.go:29	server start:	{"port": 7817}
-2022-09-21T15:59:37.653+0800	[34mINFO[0m	server/server.go:29	server start:	{"port": 7817}
-2022-09-23T11:01:59.462+0800	[34mINFO[0m	server/server.go:29	server start:	{"port": 7817}
-2023-10-24T12:32:19.246+0800	[34mINFO[0m	server/server.go:48	server start:	{"port": 7817}
+2023-12-19T15:26:54.075+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-19T15:26:54.113+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-19T15:27:07.274+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&sid=8674665223082153551&type=0", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0062049}
+2023-12-19T15:30:08.786+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-19T15:30:08.826+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-19T15:30:12.973+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&sid=8674665223082153551&type=0", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.006626}
+2023-12-19T15:30:50.508+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=801102519&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0253028}
+2023-12-19T15:31:38.395+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-19T15:31:38.431+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-19T15:31:45.086+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0113075}
+2023-12-19T15:31:46.902+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0112509}
+2023-12-19T15:32:08.158+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0119954}
+2023-12-19T15:36:30.366+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-19T15:36:30.407+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-19T15:36:34.782+0800	[35mDEBUG[0m	service/userserver.go:96	login base, find user	{"user": "{\"id\":1005,\"phone\":\"0\",\"icon\":\"sys:26\",\"name\":\"飞鸟\",\"nick\":\"飞鸟\",\"email\":\"momo@local.com\",\"pwd\":\"801102519\",\"temppwd\":\"\",\"region\":\"未设定\",\"ipv4\":\"192.168.1.2\",\"wxid\":\"0\",\"age\":1,\"gender\":1,\"tm\":\"2023/11/09 14:26:14\",\"sid\":0,\"tmlogin\":1702971128152,\"nfail\":0}"}
+2023-12-19T15:36:34.789+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0126219}
+2023-12-19T15:39:55.247+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-19T15:39:55.288+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-19T15:39:59.203+0800	[35mDEBUG[0m	service/userserver.go:96	login base, find user	{"user": "{\"id\":1005,\"phone\":\"0\",\"icon\":\"sys:26\",\"name\":\"飞鸟\",\"nick\":\"飞鸟\",\"email\":\"momo@local.com\",\"pwd\":\"801102519\",\"temppwd\":\"\",\"region\":\"未设定\",\"ipv4\":\"192.168.1.2\",\"wxid\":\"0\",\"age\":1,\"gender\":1,\"tm\":\"2023/11/09 14:26:14\",\"sid\":0,\"tmlogin\":1702971394783,\"nfail\":0}"}
+2023-12-19T15:39:59.210+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.013285}
+2023-12-19T15:42:09.785+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-19T15:42:09.823+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-19T15:42:12.466+0800	[35mDEBUG[0m	service/userserver.go:96	login base, find user	{"user": "{\"id\":1005,\"phone\":\"0\",\"icon\":\"sys:26\",\"name\":\"飞鸟\",\"nick\":\"飞鸟\",\"email\":\"momo@local.com\",\"pwd\":\"801102519\",\"temppwd\":\"\",\"region\":\"未设定\",\"ipv4\":\"192.168.1.2\",\"wxid\":\"0\",\"age\":1,\"gender\":1,\"tm\":\"2023/11/09 14:26:14\",\"sid\":0,\"tmlogin\":1702971599204,\"nfail\":0}"}
+2023-12-19T15:42:12.473+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0131029}
+2023-12-19T15:43:34.586+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-19T15:43:34.629+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-19T15:43:39.045+0800	[35mDEBUG[0m	service/userserver.go:96	login base, find user	{"user": "{\"id\":1005,\"phone\":\"0\",\"icon\":\"sys:26\",\"name\":\"飞鸟\",\"nick\":\"飞鸟\",\"email\":\"momo@local.com\",\"pwd\":\"801102519\",\"temppwd\":\"\",\"region\":\"未设定\",\"ipv4\":\"192.168.1.2\",\"wxid\":\"0\",\"age\":1,\"gender\":1,\"tm\":\"2023/11/09 14:26:14\",\"sid\":0,\"tmlogin\":1702971732467,\"nfail\":0}"}
+2023-12-19T15:43:39.052+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0131593}
+2023-12-19T15:47:07.465+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-19T15:47:07.505+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-19T15:47:10.855+0800	[35mDEBUG[0m	service/userserver.go:96	login base, find user	{"user": "{\"id\":1005,\"phone\":\"0\",\"icon\":\"sys:26\",\"name\":\"飞鸟\",\"nick\":\"飞鸟\",\"email\":\"momo@local.com\",\"pwd\":\"801102519\",\"temppwd\":\"\",\"region\":\"未设定\",\"ipv4\":\"192.168.1.2\",\"wxid\":\"0\",\"age\":1,\"gender\":1,\"tm\":\"2023/11/09 14:26:14\",\"sid\":0,\"tmlogin\":1702971819046,\"nfail\":0}"}
+2023-12-19T15:47:10.862+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0146432}
+2023-12-19T15:53:09.210+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-19T15:53:09.249+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-19T15:53:11.146+0800	[35mDEBUG[0m	service/userserver.go:96	login base, find user	{"user": "{\"id\":1005,\"phone\":\"0\",\"icon\":\"sys:26\",\"name\":\"飞鸟\",\"nick\":\"飞鸟\",\"email\":\"momo@local.com\",\"pwd\":\"801102519\",\"temppwd\":\"\",\"region\":\"未设定\",\"ipv4\":\"192.168.1.2\",\"wxid\":\"0\",\"age\":1,\"gender\":1,\"tm\":\"2023/11/09 14:26:14\",\"session\":0,\"tmlogin\":1702972030855,\"countfail\":1}"}
+2023-12-19T15:53:11.152+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0133432}
+2023-12-20T08:34:44.846+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-20T08:34:44.893+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-20T08:34:49.019+0800	[34mINFO[0m	service/userserver.go:80	set in map user login result:	{"id": "1005", "result": false, "failcount": 1}
+2023-12-20T08:34:49.026+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.013255}
+2023-12-20T08:35:12.340+0800	[34mINFO[0m	service/userserver.go:80	set in map user login result:	{"id": "1005", "result": false, "failcount": 2}
+2023-12-20T08:35:12.345+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0138321}
+2023-12-20T08:35:13.431+0800	[34mINFO[0m	service/userserver.go:80	set in map user login result:	{"id": "1005", "result": false, "failcount": 3}
+2023-12-20T08:35:13.435+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0114259}
+2023-12-20T08:35:15.837+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-20T08:35:16.826+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-20T08:35:17.987+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-20T08:35:50.567+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-20T08:39:18.943+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-20T08:39:18.978+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-20T08:39:21.767+0800	[34mINFO[0m	service/userserver.go:81	user login filter result:	{"id": "1005", "result": false, "failcount": 1}
+2023-12-20T08:39:21.773+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0123241}
+2023-12-20T08:39:23.463+0800	[34mINFO[0m	service/userserver.go:81	user login filter result:	{"id": "1005", "result": false, "failcount": 2}
+2023-12-20T08:39:23.468+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0116109}
+2023-12-20T08:39:24.502+0800	[34mINFO[0m	service/userserver.go:81	user login filter result:	{"id": "1005", "result": false, "failcount": 3}
+2023-12-20T08:39:24.507+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0114802}
+2023-12-20T08:39:25.375+0800	[34mINFO[0m	service/userserver.go:44	user login block	{"uid": "1005"}
+2023-12-20T08:39:25.375+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0004322}
+2023-12-20T08:42:22.002+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-20T08:42:22.037+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-20T08:42:25.855+0800	[34mINFO[0m	service/userserver.go:81	user login filter result:	{"id": "1005", "result": false, "failcount": 1}
+2023-12-20T08:42:25.860+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0114391}
+2023-12-20T08:42:27.891+0800	[34mINFO[0m	service/userserver.go:81	user login filter result:	{"id": "1005", "result": false, "failcount": 2}
+2023-12-20T08:42:27.895+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0111692}
+2023-12-20T08:42:30.461+0800	[34mINFO[0m	service/userserver.go:81	user login filter result:	{"id": "1005", "result": false, "failcount": 3}
+2023-12-20T08:42:30.466+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0109174}
+2023-12-20T08:42:31.413+0800	[34mINFO[0m	service/userserver.go:44	user login block	{"uid": "1005"}
+2023-12-20T08:42:31.414+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.00126}
+2023-12-20T08:42:37.926+0800	[34mINFO[0m	service/userserver.go:44	user login block	{"uid": "1005"}
+2023-12-20T08:42:37.926+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=8011025191&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0003167}
+2023-12-20T08:42:51.397+0800	[34mINFO[0m	service/userserver.go:44	user login block	{"uid": "1005"}
+2023-12-20T08:42:51.398+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=801102519&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0010125}
+2023-12-20T08:47:44.606+0800	[34mINFO[0m	service/userserver.go:81	user login filter result:	{"id": "1005", "result": true, "failcount": 0}
+2023-12-20T08:47:44.613+0800	[34mINFO[0m	service/userserver.go:188	user login ok	{"name": "1005"}
+2023-12-20T08:47:44.624+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/login	{"status": 200, "method": "GET", "path": "/v1/user/login", "query": "uid=1005&pwd=801102519&type=1", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.032571}
+2023-12-20T08:48:14.915+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/searchfriends	{"status": 401, "method": "GET", "path": "/v1/user/searchfriends", "query": "fid=1005&sid=5577006791947779410", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.000559}
+2023-12-20T08:48:34.951+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/searchfriends	{"status": 401, "method": "GET", "path": "/v1/user/searchfriends", "query": "fid=1005&sid=5577006791947779410&uid=1005", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-20T08:49:10.680+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/searchfriends	{"status": 401, "method": "GET", "path": "/v1/user/searchfriends", "query": "fid=1005&sid=5577006791947779410&uid=1005", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-20T08:51:01.015+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-20T08:51:01.062+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-20T08:53:15.599+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-20T08:53:15.655+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-20T08:54:04.175+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/searchfriends	{"status": 401, "method": "GET", "path": "/v1/user/searchfriends", "query": "fid=1005&sid=5577006791947779410&uid=1005", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 38.2863474}
+2023-12-20T08:55:28.756+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-20T08:55:28.802+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-20T08:55:36.802+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/searchfriends	{"status": 200, "method": "GET", "path": "/v1/user/searchfriends", "query": "fid=1005&sid=5577006791947779410&uid=1005", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 3.8437879}
+2023-12-20T09:10:22.573+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-20T09:10:22.617+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-20T09:10:22.619+0800	[34mINFO[0m	zhituBackend/main.go:67	server stop here.
+2023-12-20T09:11:08.249+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-20T09:11:08.289+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-20T09:11:08.289+0800	[34mINFO[0m	zhituBackend/main.go:67	server stop here.
+2023-12-20T09:11:37.353+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-20T09:11:37.396+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-20T09:12:47.029+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-20T09:12:47.064+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-20T09:14:50.992+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/addfriendreq	{"status": 200, "method": "GET", "path": "/v1/user/addfriendreq", "query": "uid=1005&sid=5577006791947779410&fid=1008", "ip": "192.168.1.2", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0218524}
+2023-12-20T09:29:40.855+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-20T09:29:40.890+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-20T09:30:07.547+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/listfriends	{"status": 200, "method": "GET", "path": "/v1/user/listfriends", "query": "type=2&uid=1005&sid=5577006791947779410", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0111715}
+2023-12-20T09:30:13.687+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/listfriends	{"status": 200, "method": "GET", "path": "/v1/user/listfriends", "query": "type=1&uid=1005&sid=5577006791947779410", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0119377}
+2023-12-20T09:37:10.967+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/setfriendinfo	{"status": 200, "method": "GET", "path": "/v1/user/setfriendinfo", "query": "uid=1005&sid=5577006791947779410&param=show", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0184459}
+2023-12-20T09:37:30.684+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/setfriendinfo	{"status": 401, "method": "GET", "path": "/v1/user/setfriendinfo", "query": "uid=1005&fid=1008sid=5577006791947779410&param=show", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0004358}
+2023-12-20T09:38:12.272+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/setfriendinfo	{"status": 401, "method": "GET", "path": "/v1/user/setfriendinfo", "query": "uid=1005&fid=1008sid=5577006791947779410&param=show", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-20T09:38:51.387+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/setfriendinfo	{"status": 401, "method": "GET", "path": "/v1/user/setfriendinfo", "query": "uid=1005&fid=1008sid=5577006791947779410&param=show", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-20T09:40:33.218+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-20T09:40:33.277+0800	[34mINFO[0m	zhituBackend/main.go:48	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-20T09:41:37.293+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/setfriendinfo	{"status": 401, "method": "GET", "path": "/v1/user/setfriendinfo", "query": "uid=1005&fid=1008sid=5577006791947779410&param=show", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 15.5664216}
+2023-12-20T09:41:55.395+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/setfriendinfo	{"status": 200, "method": "GET", "path": "/v1/user/setfriendinfo", "query": "uid=1005&fid=1008&sid=5577006791947779410&param=show", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 6.6794029}
+2023-12-20T09:42:10.171+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/setfriendinfo	{"status": 200, "method": "GET", "path": "/v1/user/setfriendinfo", "query": "uid=1005&fid=1008&sid=5577006791947779410&param=remove", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0185937}
+2023-12-20T09:42:35.061+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/setfriendinfo	{"status": 200, "method": "GET", "path": "/v1/user/setfriendinfo", "query": "uid=1005&fid=1008&sid=5577006791947779410&param=show", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0122476}
+2023-12-20T09:44:13.862+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/setfriendinfo	{"status": 200, "method": "GET", "path": "/v1/user/setfriendinfo", "query": "uid=1005&fid=1008&sid=5577006791947779410&param=show", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0123404}
+2023-12-21T11:10:29.784+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-21T11:10:29.855+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-21T11:11:04.848+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 404, "method": "GET", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-21T11:11:14.775+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 404, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-21T11:12:39.157+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-21T11:12:39.209+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-21T11:14:09.444+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.3571842}
+2023-12-21T11:18:35.714+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-21T11:18:35.765+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-21T11:18:38.635+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.3236621}
+2023-12-21T11:20:39.399+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-21T11:20:39.449+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-21T11:20:44.851+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0305158}
+2023-12-21T11:28:06.810+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-21T11:28:06.858+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-21T11:28:22.002+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.026745}
+2023-12-21T11:28:33.102+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/recent	{"status": 200, "method": "GET", "path": "/v1/news/recent", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0087443}
+2023-12-21T11:41:16.904+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-21T11:41:16.953+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-21T11:41:50.826+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E8%8A%B1", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0180322}
+2023-12-21T11:41:59.740+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E6%A1%82%E8%8A%B1", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.006935}
+2023-12-21T11:42:05.626+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E9%9B%AA", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0079683}
+2023-12-21T11:42:11.583+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E9%A2%90%E5%92%8C", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0096264}
+2023-12-21T11:47:22.333+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-21T11:47:22.383+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-21T11:47:26.323+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E9%A2%90%E5%92%8C", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0267482}
+2023-12-21T11:48:32.696+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0212502}
+2023-12-21T11:48:43.527+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0141707}
+2023-12-21T11:48:58.964+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E9%A2%90%E5%92%8C", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0105704}
+2023-12-21T11:49:09.840+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E9%9B%AA", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0142717}
+2023-12-21T11:49:23.106+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E6%95%85%E5%AE%AB", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0140002}
+2023-12-21T14:12:59.567+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-21T14:12:59.631+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T09:54:31.263+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T09:54:31.319+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T09:58:59.743+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E6%95%85%E5%AE%AB", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0301765}
+2023-12-23T09:59:42.483+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E6%95%85%E5%AE%AB", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0023376}
+2023-12-23T10:29:36.540+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T10:29:36.611+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T10:29:53.979+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/listfriends	{"status": 200, "method": "GET", "path": "/v1/user/listfriends", "query": "type=1&uid=1005&sid=5577006791947779410", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.105783}
+2023-12-23T10:30:02.161+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/listfriends	{"status": 200, "method": "GET", "path": "/v1/user/listfriends", "query": "type=2&uid=1005&sid=5577006791947779410", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0124878}
+2023-12-23T10:30:16.535+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/user/setfriendinfo	{"status": 200, "method": "GET", "path": "/v1/user/setfriendinfo", "query": "uid=1005&fid=1008&sid=5577006791947779410&param=show", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0122388}
+2023-12-23T10:30:52.779+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/gpx/position	{"status": 404, "method": "POST", "path": "/v1/gpx/position", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-23T10:32:28.775+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/gpx/position	{"status": 404, "method": "POST", "path": "/v1/gpx/position", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-23T10:32:42.309+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/gpx/position	{"status": 200, "method": "GET", "path": "/v1/gpx/position", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0078452}
+2023-12-23T10:34:29.290+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T10:34:29.354+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T10:34:38.177+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/gpx/position	{"status": 200, "method": "POST", "path": "/v1/gpx/position", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0142039}
+2023-12-23T10:35:26.237+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/gpx/position	{"status": 200, "method": "GET", "path": "/v1/gpx/position", "query": "uid=1008&fid=1009", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0133104}
+2023-12-23T10:36:29.748+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 404, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-23T10:38:30.101+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T10:38:30.165+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T10:38:35.516+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 400, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.008137}
+2023-12-23T10:38:49.599+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0514442}
+2023-12-23T10:39:01.707+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0232066}
+2023-12-23T10:39:12.802+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 401, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-23T10:39:31.049+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/recent	{"status": 401, "method": "GET", "path": "/v1/news/recent", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-23T10:40:00.166+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/recent	{"status": 200, "method": "GET", "path": "/v1/news/recent", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0190535}
+2023-12-23T10:41:41.030+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T10:41:41.097+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T10:42:22.462+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 401, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E6%95%85%E5%AE%AB", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0}
+2023-12-23T10:42:37.460+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E6%95%85%E5%AE%AB", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0303834}
+2023-12-23T10:43:13.315+0800	[34mINFO[0m	db/mongo_client.go:129	Delete news: 	{"info": "Deleted 1 document(s)\n"}
+2023-12-23T10:43:13.315+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/delete	{"status": 200, "method": "GET", "path": "/v1/news/delete", "query": "nid=1008&uid=1008&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0164978}
+2023-12-23T10:49:53.655+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T10:49:53.710+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T10:49:57.636+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.1996599}
+2023-12-23T10:49:59.878+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0184826}
+2023-12-23T11:01:37.850+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T11:01:37.907+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T11:02:01.648+0800	[34mINFO[0m	db/mongo_client.go:157	Delete news: 	{"info": "Deleted 1 document(s)\n"}
+2023-12-23T11:02:01.648+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/delete	{"status": 200, "method": "GET", "path": "/v1/news/delete", "query": "nid=1010&uid=1008&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0258736}
+2023-12-23T11:06:04.858+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T11:06:04.922+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T11:06:11.232+0800	[34mINFO[0m	db/mongo_client.go:157	Delete news: 	{"info": "Deleted 1 document(s)\n"}
+2023-12-23T11:06:11.233+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/delete	{"status": 200, "method": "GET", "path": "/v1/news/delete", "query": "nid=1010&uid=1008&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0255025}
+2023-12-23T11:06:44.673+0800	[34mINFO[0m	db/mongo_client.go:157	Delete news: 	{"info": "Deleted 1 document(s)\n"}
+2023-12-23T11:06:44.674+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/delete	{"status": 200, "method": "GET", "path": "/v1/news/delete", "query": "nid=1009&uid=1008&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0102489}
+2023-12-23T11:07:51.228+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/recent	{"status": 200, "method": "GET", "path": "/v1/news/recent", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0102244}
+2023-12-23T11:08:42.696+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E6%95%85%E5%AE%AB", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0109225}
+2023-12-23T11:09:15.101+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E6%95%85%E5%AE%AB", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0112748}
+2023-12-23T11:09:28.874+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E6%95%85%E5%AE%AB", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0090151}
+2023-12-23T11:09:57.991+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/bytag	{"status": 200, "method": "GET", "path": "/v1/news/bytag", "query": "tag=%E6%95%85%E5%AE%AB", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.010821}
+2023-12-23T11:13:07.108+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setfav	{"status": 400, "method": "GET", "path": "/v1/news/setfav", "query": "nid=1001&uid=1008&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0155597}
+2023-12-23T11:13:20.153+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setfav	{"status": 200, "method": "GET", "path": "/v1/news/setfav", "query": "nid=1001&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0164223}
+2023-12-23T11:14:18.472+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setfav	{"status": 200, "method": "GET", "path": "/v1/news/setfav", "query": "nid=1001&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0097809}
+2023-12-23T11:17:32.695+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T11:17:32.753+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T11:17:38.032+0800	[34mINFO[0m	db/mongo_client.go:240	update news: 	{"info": "Deleted 1 document(s)\n"}
+2023-12-23T11:17:38.032+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setfav	{"status": 200, "method": "GET", "path": "/v1/news/setfav", "query": "nid=1001&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0176779}
+2023-12-23T11:17:57.638+0800	[34mINFO[0m	db/mongo_client.go:240	update news: 	{"info": "Deleted 1 document(s)\n"}
+2023-12-23T11:17:57.638+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setfav	{"status": 200, "method": "GET", "path": "/v1/news/setfav", "query": "nid=1001&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0070139}
+2023-12-23T11:18:14.174+0800	[34mINFO[0m	db/mongo_client.go:240	update news: 	{"info": "Deleted 1 document(s)\n"}
+2023-12-23T11:18:14.175+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1001&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0071951}
+2023-12-23T22:18:11.655+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:18:11.724+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:19:33.329+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0333766}
+2023-12-23T22:21:33.369+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:21:33.457+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:23:54.881+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:23:54.948+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:25:02.733+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:25:02.792+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:25:10.516+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0484509}
+2023-12-23T22:29:17.635+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:29:17.698+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:29:24.065+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0368335}
+2023-12-23T22:30:43.551+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:30:43.625+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:32:38.013+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:32:38.081+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:32:39.767+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0213616}
+2023-12-23T22:33:31.844+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:33:31.913+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:33:35.385+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0212249}
+2023-12-23T22:35:53.021+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:35:53.099+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:36:36.979+0800	[34mINFO[0m	db/mongo_client.go:349	update news: 	{"info": "Deleted 1 document(s)\n"}
+2023-12-23T22:36:36.981+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 42.0285974}
+2023-12-23T22:37:57.696+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 4.2994581}
+2023-12-23T22:38:25.639+0800	[34mINFO[0m	db/mongo_client.go:264	update fav like hate	{"1002-1008": "like"}
+2023-12-23T22:38:25.640+0800	[34mINFO[0m	db/mongo_client.go:349	update news: 	{"info": "Deleted 1 document(s)\n"}
+2023-12-23T22:38:25.640+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=dec", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0137967}
+2023-12-23T22:42:23.479+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:42:23.534+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:42:30.374+0800	[34mINFO[0m	db/mongo_client.go:264	update fav like hate	{"1002-1008": "like"}
+2023-12-23T22:42:30.375+0800	[34mINFO[0m	db/mongo_client.go:349	update news: 	{"info": "update 1 document(s)\n"}
+2023-12-23T22:42:30.375+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=dec", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0203088}
+2023-12-23T22:44:11.717+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:44:11.785+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:44:20.056+0800	[34mINFO[0m	db/mongo_client.go:264	update fav like hate	{"1002-1008": "like"}
+2023-12-23T22:44:20.056+0800	[34mINFO[0m	db/mongo_client.go:349	update news: 	{"info": "update 1 document(s)\n"}
+2023-12-23T22:44:20.056+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=dec", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0161523}
+2023-12-23T22:44:38.445+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=dec", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0083564}
+2023-12-23T22:45:08.058+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=dec", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0262645}
+2023-12-23T22:45:26.033+0800	[34mINFO[0m	db/mongo_client.go:264	update fav like hate	{"1002-1008": "like"}
+2023-12-23T22:45:26.034+0800	[34mINFO[0m	db/mongo_client.go:349	update news: 	{"info": "update 1 document(s)\n"}
+2023-12-23T22:45:26.034+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0088547}
+2023-12-23T22:45:27.031+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setlike	{"status": 200, "method": "GET", "path": "/v1/news/setlike", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0065088}
+2023-12-23T22:46:01.899+0800	[34mINFO[0m	db/mongo_client.go:264	update fav like hate	{"1002-1008": "fav"}
+2023-12-23T22:46:01.900+0800	[34mINFO[0m	db/mongo_client.go:349	update news: 	{"info": "update 1 document(s)\n"}
+2023-12-23T22:46:01.900+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setfav	{"status": 200, "method": "GET", "path": "/v1/news/setfav", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0096199}
+2023-12-23T22:46:32.190+0800	[34mINFO[0m	db/mongo_client.go:264	update fav like hate	{"1002-1008": "fav"}
+2023-12-23T22:46:32.190+0800	[34mINFO[0m	db/mongo_client.go:349	update news: 	{"info": "update 1 document(s)\n"}
+2023-12-23T22:46:32.190+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setfav	{"status": 200, "method": "GET", "path": "/v1/news/setfav", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=dec", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0102998}
+2023-12-23T22:46:40.820+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/setfav	{"status": 200, "method": "GET", "path": "/v1/news/setfav", "query": "nid=1002&uid=1008&sid=4553374183501693351&opt=dec", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0078445}
+2023-12-23T22:50:21.826+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:50:21.885+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:51:54.289+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-23T22:51:54.347+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-23T22:51:57.902+0800	[34mINFO[0m	db/mongo_client.go:349	update news: 	{"info": "update 1 document(s)\n"}
+2023-12-23T22:51:57.902+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/sethate	{"status": 200, "method": "GET", "path": "/v1/news/sethate", "query": "nid=1010&uid=1008&sid=4553374183501693351&reason=2&opt=inc", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0151461}
+2023-12-23T22:52:34.601+0800	[34mINFO[0m	db/mongo_client.go:264	update fav like hate	{"1010-1008": "hate"}
+2023-12-23T22:52:34.601+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/sethate	{"status": 200, "method": "GET", "path": "/v1/news/sethate", "query": "nid=1010&uid=1008&sid=4553374183501693351&reason=2&opt=dec", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0073494}
+2023-12-24T11:44:52.661+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-24T11:44:52.796+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-24T11:46:29.844+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/addcomment	{"status": 401, "method": "POST", "path": "/v1/news/addcomment", "query": "nid=1010&uid=1008&sid=455337418350169335", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0058789}
+2023-12-24T11:46:50.805+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/addcomment	{"status": 200, "method": "POST", "path": "/v1/news/addcomment", "query": "nid=1010&uid=1008&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0383521}
+2023-12-24T11:51:35.346+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-24T11:51:35.400+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-24T11:52:04.746+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/addcomment	{"status": 200, "method": "POST", "path": "/v1/news/addcomment", "query": "nid=1010&uid=1008&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0181289}
+2023-12-24T11:53:32.731+0800	[34mINFO[0m	db/mongo_client.go:533	Delete comment: 	{"info": "Deleted 1 comment(s)\n"}
+2023-12-24T11:53:32.732+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/deletecomment	{"status": 200, "method": "GET", "path": "/v1/news/deletecomment", "query": "nid=1010&uid=1008&cid=1001&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0077403}
+2023-12-24T11:55:58.982+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/addcomment	{"status": 200, "method": "POST", "path": "/v1/news/addcomment", "query": "nid=1010&uid=1008&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0126823}
+2023-12-24T11:55:59.733+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/addcomment	{"status": 200, "method": "POST", "path": "/v1/news/addcomment", "query": "nid=1010&uid=1008&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0114099}
+2023-12-24T11:56:14.830+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-24T11:56:14.881+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-24T11:56:24.486+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/addcomment	{"status": 200, "method": "POST", "path": "/v1/news/addcomment", "query": "nid=1010&uid=1008&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0188788}
+2023-12-24T11:56:25.579+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/addcomment	{"status": 200, "method": "POST", "path": "/v1/news/addcomment", "query": "nid=1010&uid=1008&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0108643}
+2023-12-24T11:56:26.358+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/addcomment	{"status": 200, "method": "POST", "path": "/v1/news/addcomment", "query": "nid=1010&uid=1008&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0121017}
+2023-12-24T12:06:19.314+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-24T12:06:19.368+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-24T12:06:33.929+0800	[34mINFO[0m	db/mongo_client.go:563	Delete comment: 	{"info": "Deleted 1 comment(s)\n"}
+2023-12-24T12:06:33.929+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/deletecomment	{"status": 200, "method": "GET", "path": "/v1/news/deletecomment", "query": "nid=1010&uid=1008&cid=1005&sid=4553374183501693351", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0163082}
+2023-12-24T12:08:14.084+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/findcomment	{"status": 200, "method": "GET", "path": "/v1/news/findcomment", "query": "nid=1010&uid=1008&sid=4553374183501693351&", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0097373}
+2023-12-24T12:14:07.436+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/report	{"status": 200, "method": "POST", "path": "/v1/news/report", "query": "nid=1010&uid=1008&sid=4553374183501693351&", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0268174}
+2023-12-24T12:15:14.428+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0175951}
+2023-12-24T12:15:15.598+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0174319}
+2023-12-24T12:17:37.319+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-24T12:17:37.378+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-24T12:17:43.040+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0256369}
+2023-12-24T12:17:43.979+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/publish	{"status": 200, "method": "POST", "path": "/v1/news/publish", "query": "", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0184763}
+2023-12-24T12:18:55.712+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-24T12:18:55.766+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-24T12:21:04.805+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/byloc	{"status": 200, "method": "GET", "path": "/v1/news/byloc", "query": "uid=1008&sid=4553374183501693351&lat=40.0&lon=116.0&radius=5.0", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0220157}
+2023-12-24T12:39:05.708+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-24T12:39:05.763+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-24T12:39:39.851+0800	[34mINFO[0m	middleware/ginlogger.go:24	/v1/news/report	{"status": 200, "method": "POST", "path": "/v1/news/report", "query": "nid=1010&uid=1008&sid=4553374183501693351&", "ip": "::1", "user-agent": "PostmanRuntime/7.36.0", "errors": "", "cost": 0.0387843}
+2023-12-24T12:40:52.354+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-24T12:40:52.416+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}
+2023-12-24T12:42:43.938+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-24T12:42:43.995+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"mode": "https", "host": "0.0.0.0:7817"}
+2023-12-24T12:43:29.108+0800	[34mINFO[0m	common/config.go:17	load config	{"name": "config.yaml"}
+2023-12-24T12:43:29.231+0800	[34mINFO[0m	zhituBackend/main.go:55	server is starting at:	{"host": "0.0.0.0:7817"}

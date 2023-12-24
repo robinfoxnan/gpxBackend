@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chunked File Upload</title>
+    <script src="js/spark-md5.min.js" defer></script>
+</head>
+<body>
+<h1>Chunked File Upload</h1>
+<input type="file" id="fileInput" />
+<button onclick="uploadFile()">Upload</button>
+<div id="progressBarContainer" style="display: none;">
+    <div id="progressBar" style="width: 0;"></div>
+</div>
+<div id="status"></div>
+<div id="serverResponse"></div>
+
+<script>
+    // 引入 spark-md5 库
+    //import SparkMD5 from 'spark-md5';
+    function uploadFile() {
+        var fileInput = document.getElementById('fileInput');
+        var file = fileInput.files[0];
+
+        if (!file) {
+            alert('Please choose a file.');
+            return;
+        }
+
+        var md5 = ""
+
+        const fileReader = new FileReader();
+        fileReader.onloadend = function () {
+            md5 = SparkMD5.ArrayBuffer.hash(this.result);
+            console.log("MD5:", md5);
+        }
+        fileReader.readAsArrayBuffer(file);
+
+        var progressBarContainer = document.getElementById('progressBarContainer');
+        var progressBar = document.getElementById('progressBar');
+        var status = document.getElementById('status');
+        var serverResponse = document.getElementById('serverResponse');
+
+        progressBar.style.width = '0%';
+        progressBarContainer.style.display = 'block';
+
+        var chunkSize = 1024 * 1024; // 1MB chunks
+        var totalChunks = Math.ceil(file.size / chunkSize);
+        var currentChunk = 0;
+
+        uploadChunk();
+
+        function uploadChunk() {
+            var xhr = new XMLHttpRequest();
+            var start = currentChunk * chunkSize;
+            var end = Math.min(start + chunkSize, file.size);
+            var chunk = file.slice(start, end);
+
+            xhr.upload.onprogress = function (event) {
+                if (event.lengthComputable) {
+                    var percent = ((currentChunk * chunkSize + event.loaded) / file.size) * 100;
+                    progressBar.style.width = percent + '%';
+                    status.innerHTML = 'Uploading... ' + Math.round(percent) + '%';
+                }
+            };
+
+            xhr.onload = function () {
+                currentChunk++;
+
+                if (currentChunk < totalChunks) {
+                    uploadChunk();
+                } else {
+                    progressBarContainer.style.display = 'none';
+                    status.innerHTML = 'Upload complete!';
+                }
+            };
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    // 显示服务端返回的信息
+                    serverResponse.innerHTML = xhr.responseText;
+                }
+            };
+
+            // 添加块号信息
+            var formData = new FormData();
+            formData.append('sid', 'robinfoxnan')
+            formData.append('file', chunk);
+            formData.append('chunkNumber', currentChunk);  // 添加块号信息
+            formData.append('totalChunks', totalChunks);   // 添加总块数信息
+            formData.append('filename', file.name);        // 添加文件名信息
+            formData.append('md5', md5);
+
+            xhr.open('POST', '/uploadchunk');
+            xhr.send(formData);
+        }
+    }
+</script>
+</body>
+</html>

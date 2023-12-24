@@ -332,7 +332,7 @@ http://localhost:7817/v1/user/regist?type=1&pwd=111111&username=robin
 
 返回的数据，如果user的id不对，说明没有找到
 
-#### 2.1.5 添加好友（关注）
+#### 2.1.5 添加好友（关注）与删除、显示、不显示位置
 
 正常情况下添加好友需要对方确认，这里为了简化设计，我们先采取关注的方式，也就是直接将对方添加到我们的关注列表，user following，哈希类型 ，键名使用uf+ID;
 
@@ -378,7 +378,7 @@ ffff
 更改好友是否显示的属性以及删除好友
 
 ```
-http://localhost:7817/v1/user/setfriendinfo?uid=1005&sid=6812630841045951575&param=show
+http://localhost:7817/v1/user/setfriendinfo?uid=1005&fid=1008&sid=6812630841045951575&param=show
 http://localhost:7817/v1/user/setfriendinfo?uid=1005&sid=6812630841045951575&param=ignore
 http://localhost:7817/v1/user/setfriendinfo?uid=1005&sid=6812630841045951575&param=remove
 ```
@@ -539,13 +539,21 @@ http://localhost:7817/v1/gpx/updatepoint
 
 ```json
  {
-	"uid": "1007",
-	"lat" : 40,
-	"lon":116,
-	"ele" :100,
-	"speed" :0,
-	"tm":0
-}
+       "uid":"1008",
+     "lat":40.00651,
+     "lon":116.258824,
+     "ele":0,
+     "accuracy":20,
+     "src":"wifi",
+     "direction":34.578010847945244,
+     "city":"北京市",
+     "addr":"北京市海淀区香山路",
+     "street":"香山路",
+     "streetNo":"",
+     "speed":0,
+     "tm":1699950389,
+     "tmStr":"23-11-318-04-26-29"
+ }
 ```
 
 成功为：
@@ -641,7 +649,7 @@ post 的数据示例为：
 </trkpt>
 ```
 
-5 查询位置
+ #### 4.1查询位置
 
 功能：本人位置信息通过GPS获得，主要是查询群组中所有人位置，以及查询某个好友位置；
 
@@ -774,7 +782,356 @@ tm64|40.00533616|116.25281886|58.2550048828125|0.0
 
 
 
+### 7. 文件上传与下载
 
+#### 7.1 上传
+
+http://127.0.0.1/uploadfile
+https://8.140.203.92:7817/uploadfile
+
+post 方式
+
+参数有2个：
+
+```
+"file" 是file类型字段，用于传递文件，这里不分片，只接收10M以下的文件；
+"src" 是用于表示客户端来源，如果是webpage，用于测试，返回HTML页面，否则返回JSON
+```
+
+返回的：
+
+```json
+{
+    "des": "File uploaded successfully",
+    "filename": "填表示例.jpg",
+    "newname": "8767235711196729344.jpg",
+    "state": "OK"
+}
+```
+
+
+
+
+
+#### 7.2 下载
+
+http://127.0.01/file/8767235711196729344.jpg?sid=123456
+
+路径的后面部分是上传得到的路径，也就是客户端需要自己拼接路径，并带上Sid
+
+### 8. 社区分享
+
+格式定义： 包含文字内容与图片，
+
+```json
+{
+	"nid": "",
+    "uid": "1001",
+    "nick": "飞鸟",
+    "icon": "sys:9",
+    "lat": 40.0,
+    "log":116.0,
+    "alt":0.0,
+     "tm":0,
+    "title": "颐和园雪后",
+    "content":"颐和园雪后是一片冰封，万里雪飘",
+    "images":["8767235711196729344.jpg"],
+    "tags":["颐和园", "桂花"],
+    "type": "point",  // track
+	"trackfile": "8767235711196729344.json",
+	"likes":0,
+	"favs":0
+}
+```
+
+
+
+#### 8.1 保存
+
+每个帖子都新分配一个号码，从"news_id"中自增获取；
+
+POST http://localhost:7817/v1/news/publish
+
+返回的
+
+```JSON
+{
+    "code": 0,
+    "des": "save news ok",
+    "nid": "1001",
+    "state": "ok"
+}
+```
+
+#### 8.2 查询最近的
+
+GET  http://localhost:7817/v1/news/recent
+
+
+
+```json
+{
+    "code": 0,
+    "data": [
+        {
+            "nid": "1004",
+            "uid": "1001",
+            "nick": "飞鸟",
+            "icon": "sys:9",
+            "lat": 40,
+            "log": 116,
+            "alt": 0,
+            "tm": 1703129301982,
+            "title": "故宫纯色",
+            "content": "颐和园雪后是一片冰封，万里雪飘",
+            "images": [
+                "8767235711196729344.jpg"
+            ],
+            "tags": [
+                "颐和园",
+                "桂花"
+            ],
+            "type": "point",
+            "trackfile": "8767235711196729344.json",
+            "likes": 0,
+            "favs": 0
+        },
+        {
+            "nid": "1003",
+            "uid": "1001",
+            "nick": "飞鸟",
+            "icon": "sys:9",
+            "lat": 40,
+            "log": 116,
+            "alt": 0,
+            "tm": 1703128844826,
+            "title": "颐和园雪后",
+            "content": "颐和园雪后是一片冰封，万里雪飘",
+            "images": [
+                "8767235711196729344.jpg"
+            ],
+            "tags": [
+                "颐和园",
+                "桂花"
+            ],
+            "type": "point",
+            "trackfile": "8767235711196729344.json",
+            "likes": 0,
+            "favs": 0
+        }
+    ],
+    "des": "save news ok",
+    "state": "ok"
+}
+```
+
+
+
+#### 8.3 根据地点查询
+
+GET http://localhost:7817/v1/news/byloc?uid=1008&sid=4553374183501693351&lat=40.0&lon=116.0&radius=5.0
+
+```json
+{
+    "code": 0,
+    "data": [
+        {
+            "nid": "1014",
+            "uid": "1008",
+            "nick": "飞鸟真人",
+            "icon": "sys:9",
+            "lat": 40,
+            "log": 116,
+            "alt": 0,
+            "tm": 1703391463027,
+            "title": "圆明园",
+            "content": "颐和园雪后是一片冰封，万里雪飘",
+            "images": [
+                "8767235711196729344.jpg"
+            ],
+            "tags": [
+                "颐和园",
+                "桂花"
+            ],
+            "type": "point",
+            "trackfile": "8767235711196729344.json",
+            "likes": 0,
+            "favs": 0,
+            "deleted": false,
+            "deltm": 0
+        },
+        {
+            "nid": "1015",
+            "uid": "1008",
+            "nick": "飞鸟真人",
+            "icon": "sys:9",
+            "lat": 40,
+            "log": 116,
+            "alt": 0,
+            "tm": 1703391463973,
+            "title": "圆明园",
+            "content": "颐和园雪后是一片冰封，万里雪飘",
+            "images": [
+                "8767235711196729344.jpg"
+            ],
+            "tags": [
+                "颐和园",
+                "桂花"
+            ],
+            "type": "point",
+            "trackfile": "8767235711196729344.json",
+            "likes": 0,
+            "favs": 0,
+            "deleted": false,
+            "deltm": 0
+        }
+    ],
+    "des": "find news ok",
+    "state": "ok"
+}
+```
+
+
+
+#### 8.4 关键字查询
+
+http://localhost:7817/v1/news/bytag?tag=颐和
+
+```
+
+```
+
+#### 8.5 删除新闻
+
+
+
+#### 8.5 添加评论
+
+POST http://localhost:7817/v1/news/addcomment?nid=1010&uid=1008&sid=4553374183501693351
+
+```json
+{
+	"nid": "1010",
+	"cid": "",
+    "uid": "1008",
+    "nick": "飞鸟",
+    "icon": "sys:9",
+
+     "tm":0,
+     "pnid": "0",
+     "toid": "1002",
+     "tonick": "天涯剑客",
+
+    "content":"颐和园雪后是一片冰封，万里雪飘",
+    "images":["8767235711196729344.jpg"],
+	"likes":0
+}
+```
+
+
+
+#### 8.6 删除评论
+
+http://localhost:7817/v1/news/deletecomment?nid=1010&uid=1008&cid=1005&sid=4553374183501693351
+
+```json
+{
+    "code": 0,
+    "des": "delete comment ok",
+    "nid": "1010",
+    "state": "ok"
+}
+```
+
+
+
+#### 8.7 查询评论
+
+http://localhost:7817/v1/news/findcomment?nid=1010&uid=1008&sid=4553374183501693351&page=1&size=20
+
+
+
+```json
+{
+    "code": 0,
+    "data": [
+        {
+            "nid": "1010",
+            "cid": "1007",
+            "uid": "1008",
+            "nick": "飞鸟",
+            "icon": "sys:9",
+            "pnid": "0",
+            "tm": 1703390186357,
+            "toid": "1002",
+            "tonick": "天涯剑客",
+            "content": "颐和园雪后是一片冰封，万里雪飘",
+            "images": [
+                "8767235711196729344.jpg"
+            ],
+            "likes": 0,
+            "deleted": false
+        },
+        {
+            "nid": "1010",
+            "cid": "1006",
+            "uid": "1008",
+            "nick": "飞鸟",
+            "icon": "sys:9",
+            "pnid": "0",
+            "tm": 1703390185578,
+            "toid": "1002",
+            "tonick": "天涯剑客",
+            "content": "颐和园雪后是一片冰封，万里雪飘",
+            "images": [
+                "8767235711196729344.jpg"
+            ],
+            "likes": 0,
+            "deleted": false
+        }
+    ],
+    "des": "find comment ok",
+    "state": "ok"
+}
+```
+
+
+
+#### 8.8 反馈报告
+
+http://localhost:7817/v1/news/report?nid=1010&uid=1008&sid=4553374183501693351&
+
+```
+{
+	"nid": "",
+    "uid": "1008",
+    "nick": "飞鸟真人",
+    "icon": "sys:9",
+    "lat": 40.0,
+    "log":116.0,
+    "alt":0.0,
+     "tm":0,
+    "title": "圆明园",
+    "content":"有点问题",
+    "images":[],
+    "tags":[],
+    "type": "report",  // track
+	"trackfile": "8767235711196729344.json",
+	"likes":0,
+	"favs":0
+}
+```
+
+
+
+```
+{
+    "code": 0,
+    "des": "i know, and will sort it later",
+    "nid": "1011",
+    "state": "ok"
+}
+```
 
 
 
@@ -1034,3 +1391,245 @@ if (state == "ok") {
     }
 }
 ```
+
+
+
+
+
+## 四、技术点
+
+```
+go run D:\Program\Go\src\crypto\tls\generate_cert.go -h
+
+go run D:\Program\Go\src\crypto\tls\generate_cert.go -host bird2fish.com
+
+```
+
+### 4.1轨迹点简化算法
+
+当需要精简经纬度轨迹点时，通常的方法是应用轨迹压缩算法，这有助于减少点的数量，同时保留轨迹的基本形状。有许多不同的轨迹压缩算法，其中一种常见的是道格拉斯-普克（Douglas-Peucker）算法。该算法基于递归，可以在一定误差范围内简化轨迹。
+
+以下是一个简化版本的Douglas-Peucker算法的示例实现，你可以根据实际需要进行修改和扩展：
+
+```go
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+type Point struct {
+	Latitude  float64
+	Longitude float64
+}
+
+func simplifyDouglasPeucker(points []Point, tolerance float64) []Point {
+	if len(points) <= 2 {
+		return points
+	}
+
+	// 找到距离最大的点
+	maxDistance := 0.0
+	maxIndex := 0
+
+	for i := 1; i < len(points)-1; i++ {
+		distance := distanceToSegment(points[i], points[0], points[len(points)-1])
+		if distance > maxDistance {
+			maxDistance = distance
+			maxIndex = i
+		}
+	}
+
+	// 如果最大距离小于阈值，直接返回首尾点
+	if maxDistance <= tolerance {
+		return []Point{points[0], points[len(points)-1]}
+	}
+
+	// 递归简化
+	leftPart := simplifyDouglasPeucker(points[:maxIndex+1], tolerance)
+	rightPart := simplifyDouglasPeucker(points[maxIndex:], tolerance)
+
+	return append(leftPart[:len(leftPart)-1], rightPart...)
+}
+
+func distanceToSegment(p, start, end Point) float64 {
+	lineLength := distanceBetweenPoints(start, end)
+
+	if lineLength == 0 {
+		return distanceBetweenPoints(p, start)
+	}
+
+	u := ((p.Latitude-start.Latitude)*(end.Latitude-start.Latitude) +
+		(p.Longitude-start.Longitude)*(end.Longitude-start.Longitude)) / (lineLength * lineLength)
+
+	if u < 0 || u > 1 {
+		closestPoint := start
+		if u > 0 {
+			closestPoint = end
+		}
+		return distanceBetweenPoints(p, closestPoint)
+	}
+
+	intersection := Point{
+		Latitude:  start.Latitude + u*(end.Latitude-start.Latitude),
+		Longitude: start.Longitude + u*(end.Longitude-start.Longitude),
+	}
+
+	return distanceBetweenPoints(p, intersection)
+}
+
+func distanceBetweenPoints(p1, p2 Point) float64 {
+	// 使用简化的球面距离计算
+	radius := 6371.0 // 地球半径，单位：千米
+	dLat := degToRad(p2.Latitude - p1.Latitude)
+	dLon := degToRad(p2.Longitude - p1.Longitude)
+
+	a := math.Sin(dLat/2)*math.Sin(dLat/2) +
+		math.Cos(degToRad(p1.Latitude))*math.Cos(degToRad(p2.Latitude))*
+			math.Sin(dLon/2)*math.Sin(dLon/2)
+
+	c := 2 * math.Atan2(math.Sqrt(a), math.Sqrt(1-a))
+
+	distance := radius * c
+	return distance
+}
+
+func degToRad(deg float64) float64 {
+	return deg * (math.Pi / 180)
+}
+
+func main() {
+	// 示例经纬度轨迹点
+	trajectory := []Point{
+		{Latitude: 38.115556, Longitude: 13.361389},
+		{Latitude: 37.502669, Longitude: 15.087269},
+		{Latitude: 38.115556, Longitude: 13.361389},
+		{Latitude: 37.502669, Longitude: 15.087269},
+		// 添加更多轨迹点...
+	}
+
+	// 误差阈值，根据实际情况调整
+	tolerance := 1.0
+
+	// 应用Douglas-Peucker算法进行轨迹简化
+	simplifiedTrajectory := simplifyDouglasPeucker(trajectory, tolerance)
+
+	// 输出简化后的轨迹点
+	fmt.Println("简化后的轨迹点：", simplifiedTrajectory)
+}
+
+```
+
+在这个例子中，`simplifyDouglasPeucker` 函数是Douglas-Peucker算法的实现，根据给定的误差阈值 `tolerance` 对轨迹进行简化。这个算法会递归地将轨迹简化为一系列新的轨迹点。根据你的需求，你可能需要调整阈值以及其他参数。这个实现是一个简单的示例，具体的应用场景可能需要更多的定制。
+
+
+
+Douglas-Peucker算法的一个特性是，它能够保留原始轨迹中的主要转向位置（拐点）。由于算法的工作方式，当误差阈值 `tolerance` 设置得适当时，将保留原始轨迹中的重要转向位置，同时删除不太显著的直线部分。
+
+但是，要注意的是，Douglas-Peucker算法不能保证精确地选择所有转向位置。选择的点数和具体的保留点取决于误差阈值和轨迹的几何形状。调整 `tolerance` 可以影响简化后轨迹的质量，但是在某些情况下，可能会丢失一些小的转向位置，特别是在轨迹段之间的变化较小的地方。
+
+如果你的应用场景对于保留所有转向位置非常敏感，可能需要考虑其他的轨迹压缩算法，或者通过调整 `tolerance` 和其他参数来优化Douglas-Peucker算法以满足你的需求。在实际应用中，通常需要进行多次测试和调整，以找到最适合你数据集和应用场景的参数。
+
+
+
+```kotlin
+import kotlin.math.pow
+import kotlin.math.sqrt
+
+data class Point(val latitude: Double, val longitude: Double)
+
+fun simplifyDouglasPeucker(points: List<Point>, tolerance: Double): List<Point> {
+    if (points.size <= 2) {
+        return points
+    }
+
+    // 找到距离最大的点
+    var maxDistance = 0.0
+    var maxIndex = 0
+
+    for (i in 1 until points.size - 1) {
+        val distance = distanceToSegment(points[i], points[0], points[points.size - 1])
+        if (distance > maxDistance) {
+            maxDistance = distance
+            maxIndex = i
+        }
+    }
+
+    // 如果最大距离小于阈值，直接返回首尾点
+    if (maxDistance <= tolerance) {
+        return listOf(points[0], points[points.size - 1])
+    }
+
+    // 递归简化
+    val leftPart = simplifyDouglasPeucker(points.subList(0, maxIndex + 1), tolerance)
+    val rightPart = simplifyDouglasPeucker(points.subList(maxIndex, points.size), tolerance)
+
+    return leftPart.subList(0, leftPart.size - 1) + rightPart
+}
+
+fun distanceToSegment(p: Point, start: Point, end: Point): Double {
+    val lineLength = distanceBetweenPoints(start, end)
+
+    if (lineLength == 0.0) {
+        return distanceBetweenPoints(p, start)
+    }
+
+    val u = ((p.latitude - start.latitude) * (end.latitude - start.latitude) +
+            (p.longitude - start.longitude) * (end.longitude - start.longitude)) / (lineLength * lineLength)
+
+    if (u < 0 || u > 1) {
+        val closestPoint = if (u > 0) end else start
+        return distanceBetweenPoints(p, closestPoint)
+    }
+
+    val intersection = Point(
+        start.latitude + u * (end.latitude - start.latitude),
+        start.longitude + u * (end.longitude - start.longitude)
+    )
+
+    return distanceBetweenPoints(p, intersection)
+}
+
+fun distanceBetweenPoints(p1: Point, p2: Point): Double {
+    // 使用简化的球面距离计算
+    val radius = 6371.0 // 地球半径，单位：千米
+    val dLat = degToRad(p2.latitude - p1.latitude)
+    val dLon = degToRad(p2.longitude - p1.longitude)
+
+    val a = Math.sin(dLat / 2).pow(2) +
+            Math.cos(degToRad(p1.latitude)) * Math.cos(degToRad(p2.latitude)) *
+            Math.sin(dLon / 2).pow(2)
+
+    val c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+
+    return radius * c
+}
+
+fun degToRad(deg: Double): Double {
+    return deg * (Math.PI / 180)
+}
+
+fun main() {
+    // 示例经纬度轨迹点
+    val trajectory = listOf(
+        Point(38.115556, 13.361389),
+        Point(37.502669, 15.087269),
+        Point(38.115556, 13.361389),
+        Point(37.502669, 15.087269)
+        // 添加更多轨迹点...
+    )
+
+    // 误差阈值，根据实际情况调整
+    val tolerance = 1.0
+
+    // 应用Douglas-Peucker算法进行轨迹简化
+    val simplifiedTrajectory = simplifyDouglasPeucker(trajectory, tolerance)
+
+    // 输出简化后的轨迹点
+    println("简化后的轨迹点：$simplifiedTrajectory")
+}
+
+```
+
+在这个 Kotlin 示例中，`simplifyDouglasPeucker` 函数是 Douglas-Peucker 算法的实现，用于根据给定的误差阈值 `tolerance` 对轨迹进行简化。同样，你可能需要根据实际需求调整 `tolerance` 和其他参数。

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/testRedis.iml" filepath="$PROJECT_DIR$/.idea/testRedis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/zhituBackend.iml" filepath="$PROJECT_DIR$/.idea/zhituBackend.iml" />
     </modules>
   </component>
 </project>

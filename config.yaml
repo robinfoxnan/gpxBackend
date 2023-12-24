@@ -1,0 +1,14 @@
+redis:
+    redis_host: 127.0.0.1:6379
+    redis_pwd: 123456
+mongo:
+    mongo_host: mongodb://127.0.0.1:27017
+    db_name: zhitu
+server:
+    host: 0.0.0.0
+    port: 7817
+    queue_len: 10000
+    workers: 1
+    schema: https
+    cert: ./cert/cert.pem
+    key: ./cert/key.pem

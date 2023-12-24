@@ -1,1 +1,7 @@
-2022-09-21T15:00:52.041+0800	[31mERROR[0m	server/main.go:23	can't connnet to server redis
+2023-12-23T10:38:49.597+0800	[31mERROR[0m	db/mongo_client.go:109	save news to redis geo	{"error": "ERR invalid longitude,latitude pair 40.000000,116.000000"}
+2023-12-23T10:39:01.707+0800	[31mERROR[0m	db/mongo_client.go:109	save news to redis geo	{"error": "ERR invalid longitude,latitude pair 40.000000,116.000000"}
+2023-12-23T10:49:57.634+0800	[31mERROR[0m	db/mongo_client.go:109	save news to redis geo	{"error": "ERR invalid longitude,latitude pair 40.000000,116.000000"}
+2023-12-23T10:49:59.878+0800	[31mERROR[0m	db/mongo_client.go:109	save news to redis geo	{"error": "ERR invalid longitude,latitude pair 40.000000,116.000000"}
+2023-12-24T12:14:07.433+0800	[31mERROR[0m	db/mongo_client.go:112	save news to redis geo	{"error": "ERR invalid longitude,latitude pair 40.000000,116.000000"}
+2023-12-24T12:15:14.428+0800	[31mERROR[0m	db/mongo_client.go:112	save news to redis geo	{"error": "ERR invalid longitude,latitude pair 40.000000,116.000000"}
+2023-12-24T12:15:15.598+0800	[31mERROR[0m	db/mongo_client.go:112	save news to redis geo	{"error": "ERR invalid longitude,latitude pair 40.000000,116.000000"}

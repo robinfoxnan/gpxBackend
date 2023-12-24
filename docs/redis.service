@@ -1,0 +1,15 @@
+[Unit]
+Description=Redis
+After=network.target
+
+[Service]
+Type=forking
+PIDFile=/usr/local/redis/redis-6.2.7/logs/redis_6379.pid
+ExecStart=/usr/local/redis/redis-6.2.7/bin/redis-server /usr/local/redis/redis-6.2.7/conf/redis.conf
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
