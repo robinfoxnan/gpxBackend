@@ -846,7 +846,7 @@ http://127.0.01/file/8767235711196729344.jpg?sid=123456
 
 
 
-#### 8.1 保存
+#### 8.1 发布帖子
 
 每个帖子都新分配一个号码，从"news_id"中自增获取；
 
@@ -863,9 +863,9 @@ POST http://localhost:7817/v1/news/publish
 }
 ```
 
-#### 8.2 查询最近的
+#### 8.2 查询最近的新闻
 
-GET  http://localhost:7817/v1/news/recent
+GET  http://localhost:7817/v1/news/recent?page=1&size=20
 
 
 
@@ -1002,6 +1002,10 @@ http://localhost:7817/v1/news/bytag?tag=颐和
 ```
 
 #### 8.5 删除新闻
+
+```
+http://localhost:7817/v1/news/delete?nid=1010&uid=1008&sid=4553374183501693351
+```
 
 
 

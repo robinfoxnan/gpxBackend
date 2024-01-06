@@ -222,6 +222,10 @@ func (me *MongoDBExporter) findNewsFavByUidAndNid(nid, uid string) (*model.NewsF
 	return &result, nil
 }
 
+func (me *MongoDBExporter) GetUserFavLike(nid, uid string) (*model.NewsFav, error) {
+	return me.findNewsFavByUidAndNid(nid, uid)
+}
+
 func (me *MongoDBExporter) addNewsFavByUidAndNid(nid, uid, field string, reason int) (*model.NewsFav, error) {
 	coll := me.db.Collection(UserFav)
 
@@ -352,14 +356,42 @@ func (me *MongoDBExporter) addNewsFieldCount(targetID string, field string, n in
 	return nil
 }
 
-func (me *MongoDBExporter) FindLatestNews() ([]model.News, error) {
+func (me *MongoDBExporter) FindLatestNews(pageSize, pageNumber int) ([]model.News, error) {
 	coll := me.db.Collection(newsPrefix)
 
 	// 按照 tm 字段降序排序，限制返回结果为20条
-	findOptions := options.Find().SetSort(bson.D{{"tm", -1}}).SetLimit(20)
+	var skipItems = int64(pageSize) * int64(pageNumber-1)
+	findOptions := options.Find().SetSort(bson.D{{"tm", -1}}).SetLimit(int64(pageSize)).SetSkip(skipItems)
 
 	// 构建查询过滤条件
 	filter := bson.M{"deleted": false}
+
+	// 执行查询
+	cursor, err := coll.Find(context.Background(), filter, findOptions)
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(context.Background())
+
+	// 解码结果
+	var newsList []model.News
+	err = cursor.All(context.Background(), &newsList)
+	if err != nil {
+		return nil, err
+	}
+
+	return newsList, nil
+}
+
+func (me *MongoDBExporter) FindNewsByUser(uid string, pageSize, pageNumber int) ([]model.News, error) {
+	coll := me.db.Collection(newsPrefix)
+
+	// 按照 tm 字段降序排序，限制返回结果为20条
+	var skipItems = int64(pageSize) * int64(pageNumber-1)
+	findOptions := options.Find().SetSort(bson.D{{"tm", -1}}).SetLimit(int64(pageSize)).SetSkip(skipItems)
+
+	// 构建查询过滤条件
+	filter := bson.M{"deleted": false, "uid": uid}
 
 	// 执行查询
 	cursor, err := coll.Find(context.Background(), filter, findOptions)
@@ -403,8 +435,11 @@ func (me *MongoDBExporter) FindNewsByNid(nids []string) ([]model.News, error) {
 }
 
 // 生成单个的查询
-func (me *MongoDBExporter) FindNewsByTag(tag string) ([]model.News, error) {
+func (me *MongoDBExporter) FindNewsByTag(tag string, pageSize, pageNumber int) ([]model.News, error) {
 	coll := me.db.Collection(newsPrefix)
+
+	var skipItems = int64(pageSize) * int64(pageNumber-1)
+	findOptions := options.Find().SetSort(bson.D{{"tm", -1}}).SetLimit(int64(pageSize)).SetSkip(skipItems)
 
 	// 构建查询过滤条件，使用 $regex 进行模糊匹配
 	filter := bson.M{
@@ -413,7 +448,7 @@ func (me *MongoDBExporter) FindNewsByTag(tag string) ([]model.News, error) {
 	}
 
 	// 执行查询
-	cursor, err := coll.Find(context.Background(), filter)
+	cursor, err := coll.Find(context.Background(), filter, findOptions)
 	if err != nil {
 		return nil, err
 	}
@@ -430,7 +465,7 @@ func (me *MongoDBExporter) FindNewsByTag(tag string) ([]model.News, error) {
 }
 
 // 同时模糊查询
-func (me *MongoDBExporter) FindNewsByTitle(keyword string) ([]model.News, error) {
+func (me *MongoDBExporter) FindNewsByTitle(keyword string, pageSize, pageNumber int) ([]model.News, error) {
 	coll := me.db.Collection(newsPrefix)
 
 	// 构建查询过滤条件，使用 $regex 进行模糊匹配
@@ -443,8 +478,10 @@ func (me *MongoDBExporter) FindNewsByTitle(keyword string) ([]model.News, error)
 		"deleted": false,
 	}
 
+	var skipItems = int64(pageSize) * int64(pageNumber-1)
+	findOptions := options.Find().SetSort(bson.D{{"tm", -1}}).SetLimit(int64(pageSize)).SetSkip(skipItems)
 	// 执行查询
-	cursor, err := coll.Find(context.Background(), filter)
+	cursor, err := coll.Find(context.Background(), filter, findOptions)
 	if err != nil {
 		return nil, err
 	}

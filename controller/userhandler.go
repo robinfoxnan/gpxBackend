@@ -130,7 +130,7 @@ func loginHandlers(w http.ResponseWriter, r *http.Request) {
 	} else if rtype == "1" {
 		sess, err := service.LoginUserBase(uid, pwd)
 		if err != nil {
-			temp := fmt.Sprintf(`{"state": "fail", "code":%d, "detail":“%s”}`, model.ErrWrongPwdCode, err.Error())
+			temp := fmt.Sprintf(`{"state": "fail", "code":%d, "detail":"%s"}`, model.ErrWrongPwdCode, err.Error())
 			w.Write([]byte(temp))
 			return
 		} else {
@@ -145,12 +145,12 @@ func loginHandlers(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	temp := fmt.Sprintf(`{"state": "fail", "deitail":“not finish”}`)
+	temp := fmt.Sprintf(`{"state": "fail", "deitail":"not finish"}`)
 	w.Write([]byte(temp))
 }
 func logoutHandlers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application-json")
-	temp := fmt.Sprintf(`{"state": "fail", "deitail":“not finish”}`)
+	temp := fmt.Sprintf(`{"state": "fail", "deitail":"not finish"}`)
 	w.Write([]byte(temp))
 }
 
@@ -259,7 +259,7 @@ func setfriendinfoHandlers(w http.ResponseWriter, r *http.Request) {
 // 设置应答结果
 func addfriendresHandlers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application-json")
-	temp := fmt.Sprintf(`{"state": "fail", "deitail":“not finish”}`)
+	temp := fmt.Sprintf(`{"state": "fail", "deitail":"not finish"}`)
 	w.Write([]byte(temp))
 }
 
@@ -310,19 +310,19 @@ func setbaseinfoHandlers(w http.ResponseWriter, r *http.Request) {
 // 请求绑定手机或者邮件的验证，未实现
 func setrealinfoHandlers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application-json")
-	temp := fmt.Sprintf(`{"state": "fail", "deitail":“not finish”}`)
+	temp := fmt.Sprintf(`{"state": "fail", "deitail":"not finish"}`)
 	w.Write([]byte(temp))
 }
 
 func removefriendHandlers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application-json")
-	temp := fmt.Sprintf(`{"state": "fail", "deitail":“not finish”}`)
+	temp := fmt.Sprintf(`{"state": "fail", "deitail":"not finish"}`)
 	w.Write([]byte(temp))
 }
 
 func blockfriendHandlers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application-json")
-	temp := fmt.Sprintf(`{"state": "fail", "deitail":“not finish”}`)
+	temp := fmt.Sprintf(`{"state": "fail", "deitail":"not finish"}`)
 	w.Write([]byte(temp))
 }
 
@@ -348,7 +348,7 @@ func permissionfriendHandlers(w http.ResponseWriter, r *http.Request) {
 				fid := strconv.FormatInt(param.Fid, 10)
 				ok := service.CheckUserSession(sid, uid)
 				if !ok {
-					temp := fmt.Sprintf(`{"state": "fail", "code": %d, "detail":“%s”}`, model.ErrWrongSidCode, model.ErrWrongSid.Error())
+					temp := fmt.Sprintf(`{"state": "fail", "code": %d, "detail":"%s"}`, model.ErrWrongSidCode, model.ErrWrongSid.Error())
 					w.Write([]byte(temp))
 					return
 				}
@@ -383,7 +383,7 @@ func listfriendsHandlers(w http.ResponseWriter, r *http.Request) {
 	//sid := values.Get("sid")
 	//ok := service.CheckUserSession(sid, uid)
 	//if !ok {
-	//	temp := fmt.Sprintf(`{"state": "fail", "code": %d, "detail":“%s”}`, model.ErrWrongSidCode, model.ErrWrongSid.Error())
+	//	temp := fmt.Sprintf(`{"state": "fail", "code": %d, "detail":"%s"}`, model.ErrWrongSidCode, model.ErrWrongSid.Error())
 	//	w.Write([]byte(temp))
 	//	return
 	//}
@@ -402,6 +402,6 @@ func listfriendsHandlers(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	temp := fmt.Sprintf(`{"state": "fail", "deitail":“not finish”}`)
+	temp := fmt.Sprintf(`{"state": "fail", "deitail":"not finish"}`)
 	w.Write([]byte(temp))
 }

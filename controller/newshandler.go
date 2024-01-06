@@ -22,7 +22,9 @@ func InitNewsHandler(r *gin.Engine) {
 		newsGroup.GET("/recent", findRecentNewsHandler)
 		newsGroup.GET("/bytag", findNewsByTagHandler)
 		newsGroup.GET("/byloc", findNewsByLocationHandler)
+		newsGroup.GET("/byuser", findNewsByUserHandler)
 
+		newsGroup.GET("/getfav", getUserNewsFav)
 		newsGroup.GET("/setfav", addNewsFavCount)
 		newsGroup.GET("/setlike", addNewsLikeCount)
 		newsGroup.GET("/sethate", addNewsHate)
@@ -112,7 +114,50 @@ func deleteNewsHandler(c *gin.Context) {
 
 func findRecentNewsHandler(c *gin.Context) {
 
-	data, err := db.MongoClient.FindLatestNews()
+	pageNumber, err := strconv.Atoi(c.Query("page"))
+	if err != nil || pageNumber < 1 {
+		pageNumber = 1
+	}
+
+	pageSize, err := strconv.Atoi(c.Query("size"))
+	if err != nil || pageSize < 1 {
+		pageSize = 20
+	}
+
+	data, err := db.MongoClient.FindLatestNews(pageSize, pageNumber)
+	if err != nil {
+		printErrResult(c, "fail", model.ErrNoDataCode, model.ErrNoData.Error())
+		return
+	}
+
+	if len(data) < 1 {
+		printErrResult(c, "fail", model.ErrNoDataCode, model.ErrNoData.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"state": "ok",
+		"code":  0,
+		"des":   "find news ok",
+		"data":  data,
+	})
+}
+
+// 通过用户名查询所有他发的帖子
+func findNewsByUserHandler(c *gin.Context) {
+	uid := c.Query("uid")
+
+	pageNumber, err := strconv.Atoi(c.Query("page"))
+	if err != nil || pageNumber < 1 {
+		pageNumber = 1
+	}
+
+	pageSize, err := strconv.Atoi(c.Query("size"))
+	if err != nil || pageSize < 1 {
+		pageSize = 20
+	}
+
+	data, err := db.MongoClient.FindNewsByUser(uid, pageSize, pageNumber)
 	if err != nil {
 		printErrResult(c, "fail", model.ErrNoDataCode, model.ErrNoData.Error())
 		return
@@ -138,14 +183,24 @@ func findNewsByTagHandler(c *gin.Context) {
 		return
 	}
 
-	data, err := db.MongoClient.FindNewsByTag(tag)
+	pageNumber, err := strconv.Atoi(c.Query("page"))
+	if err != nil || pageNumber < 1 {
+		pageNumber = 1
+	}
+
+	pageSize, err := strconv.Atoi(c.Query("size"))
+	if err != nil || pageSize < 1 {
+		pageSize = 20
+	}
+
+	data, err := db.MongoClient.FindNewsByTag(tag, pageSize, pageNumber)
 	if err != nil {
 		printErrResult(c, "fail", model.ErrNoDataCode, model.ErrNoData.Error())
 		return
 	}
 
 	if len(data) < 1 {
-		data, err = db.MongoClient.FindNewsByTitle(tag)
+		data, err = db.MongoClient.FindNewsByTitle(tag, pageSize, pageNumber)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -180,6 +235,16 @@ func findNewsByLocationHandler(c *gin.Context) {
 		return
 	}
 
+	pageNumber, err := strconv.Atoi(c.Query("page"))
+	if err != nil || pageNumber < 1 {
+		pageNumber = 1
+	}
+
+	pageSize, err := strconv.Atoi(c.Query("size"))
+	if err != nil || pageSize < 1 {
+		pageSize = 20
+	}
+
 	// 先查询ID
 	locationIDs, err := db.RedisCli.GetLocationsInRadius(lat, lon, radius, 20)
 	if err != nil {
@@ -199,6 +264,25 @@ func findNewsByLocationHandler(c *gin.Context) {
 		"state": "ok",
 		"code":  0,
 		"des":   "find news ok",
+		"data":  data,
+	})
+}
+
+// 获取用户是否设置了
+func getUserNewsFav(c *gin.Context) {
+	uid := c.Query("uid")
+	nid := c.Query("nid")
+
+	data, err := db.MongoClient.GetUserFavLike(nid, uid)
+	if err != nil {
+		common.Logger.Info("find user fav like err:", zap.Error(err))
+		data = &model.NewsFav{Nid: nid, Uid: uid}
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"state": "ok",
+		"code":  0,
+		"des":   "set fav news ok",
+		"uid":   uid,
 		"data":  data,
 	})
 }
@@ -334,7 +418,7 @@ func findNewsCommentHandler(c *gin.Context) {
 
 	pageSize, err := strconv.Atoi(c.Query("size"))
 	if err != nil || pageSize < 1 {
-		pageSize = 20
+		pageSize = 100
 	}
 
 	// 查询 Comment 数据
